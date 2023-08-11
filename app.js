@@ -12,11 +12,11 @@ console.log('-------------------------------------------')
 console.log('-------  WELCOME TO THE APPLICATION -------')
 console.log('Adição....................................+')
 console.log('Multiplicação.............................x')
-console.log('Subtração.................................- ')
-console.log('Divisão...................................% ')
+console.log('Subtração.................................-')
+console.log('Divisão.................................../')
 console.log('-------------------------------------------')
 
-entradaDados.question('Primeiro, informe a operação desejada [ + , x , - , % ]: ', function(operacaoEscolha){
+entradaDados.question('Primeiro, informe a operação desejada [ + , x , - , / ]: ', function(operacaoEscolha){
     let escolha = operacaoEscolha
     entradaDados.question('Por favor, informe o primeiro valor: ', function (primeiroValor){
         let valor1 = primeiroValor
@@ -33,7 +33,7 @@ entradaDados.question('Primeiro, informe a operação desejada [ + , x , - , % ]
         console.log('-------------------------------------------')
         
     } else {
-        
+
         console.log('Primeiro valor: ' + valor1)
         console.log('Segundo valor: ' + valor2)
 
@@ -55,7 +55,7 @@ entradaDados.question('Primeiro, informe a operação desejada [ + , x , - , % ]
 
             console.log('Resultado: ' + valor1 + " * "+ valor2 + " = "+ resultado)     
 
-        }else if (escolha == "%"){
+        }else if (escolha == "/"){
 
             resultado = valor1 / valor2
 
