@@ -9,66 +9,104 @@ var entradaDados = readline.createInterface({
 console.log('-------------------------------------------')
 console.log('           JAVASCRIPT CALCULATOR           ')
 console.log('-------------------------------------------')
-console.log('-------  WELCOME TO THE APPLICATION -------')
+console.log('---------  BEM-VINDO A APLICAÇÃO ----------')
+console.log('-------------------------------------------')
+console.log(' ')
 console.log('Adição....................................+')
 console.log('Multiplicação.............................x')
 console.log('Subtração.................................-')
 console.log('Divisão.................................../')
+console.log('Potenciação...............................^')
+console.log('Porcentagem...............................%')
 console.log('-------------------------------------------')
+console.log(' ')
 
-entradaDados.question('Primeiro, informe a operação desejada [ + , x , - , / ]: ', function(operacaoEscolha){
-    let escolha = operacaoEscolha
-    entradaDados.question('Por favor, informe o primeiro valor: ', function (primeiroValor){
-        let valor1 = primeiroValor
-            entradaDados.question('Agora, informe o seguno valor: ', function(segundoValor){
-                let valor2 = segundoValor
+/*replce() - permite localizar um caracter e substituir por outro*/
+entradaDados.question('Primeiro, informe a operação desejada [ + , x , - , / , ^ , % ]: ', function (operacaoEscolha) {
+    let escolha = operacaoEscolha.toLowerCase();
 
-                valor1 = parseFloat(primeiroValor)
-                valor2 = parseFloat(segundoValor)               
-           
-    if( valor1 == '' || valor2 == '' || escolha == ''){
+    entradaDados.question('Por favor, informe o primeiro valor: ', function (primeiroValor) {
+        let valor1 = primeiroValor.replace(',', '.');
 
-        console.log('-------------------------------------------')
-        console.log('ERRO: Preencha TODOS os campos CORRETAMENTE')
-        console.log('-------------------------------------------')
-        
-    } else {
+        entradaDados.question('Agora, informe o seguno valor: ', function (segundoValor) {
+            let valor2 = segundoValor.replace(',', '.');
 
-        console.log('Primeiro valor: ' + valor1)
-        console.log('Segundo valor: ' + valor2)
+            if (valor1 == '' || valor2 == '') {
 
-        if(escolha == "+"){
+                console.log('-------------------------------------------')
+                console.log('ERRO: Preencha TODOS os campos CORRETAMENTE')
+                console.log('-------------------------------------------')
 
-            let resultado = valor1 + valor2
+            } else if (isNaN(valor1) || isNaN(valor2)) {
 
-            console.log('Resultado: ' + valor1 + " + "+ valor2 + " = "+ resultado)   
+                console.log('-------------------------------------------')
+                console.log('ERRO: Digite SOMENTE números')
+                console.log('-------------------------------------------')
 
-        } else if(escolha == "-"){
+            } else {
 
-            resultado = valor1 - valor2
+                valor1 = parseFloat(valor1)
+                valor2 = parseFloat(valor2)
 
-            console.log('Resultado: ' + valor1 + " - "+ valor2 + " = "+ resultado)       
 
-        } else if(escolha == "x"){
+                console.log('Primeiro valor: ' + valor1)
+                console.log('Segundo valor: ' + valor2)
 
-            resultado = valor1 * valor2
+                if (escolha == "+") {
 
-            console.log('Resultado: ' + valor1 + " * "+ valor2 + " = "+ resultado)     
+                    let resultado = valor1 + valor2
 
-        }else if (escolha == "/"){
+                    console.log('Resultado: ' + valor1 + " + " + valor2 + " = " + resultado.toFixed(2).replace('.', ','))
 
-            resultado = valor1 / valor2
+                } else if (escolha == "-") {
 
-            console.log('Resultado: ' + valor1 + " % "+ valor2 + " = "+ resultado)  
+                    resultado = valor1 - valor2
 
-        }else{
-            console.log('-------------------------------------------')
-            console.log('ERRO: Preencha TODOS os campos CORRETAMENTE')
-            console.log('-------------------------------------------')
-        }
-    }             
-        entradaDados.close();
-                
+                    console.log('Resultado: ' + valor1 + " - " + valor2 + " = " + resultado.toFixed(2).replace('.', ','))
+
+                } else if (escolha == "x") {
+
+                    resultado = valor1 * valor2
+
+                    console.log('Resultado: ' + valor1 + " x " + valor2 + " = " + resultado.toFixed(2).replace('.', ','))
+
+                } else if (escolha == "/") {
+
+                    if (valor2 == 0) {
+
+                        console.log('-------------------------------------------')
+                        console.log('ERRO: NÃO é possível dividir um número por 0!')
+                        console.log('-------------------------------------------')
+
+                    } else {
+
+                        resultado = valor1 / valor2
+
+                        console.log('Resultado: ' + valor1 + " / " + valor2 + " = " + resultado.toFixed(2).replace('.', ','))
+                    }
+
+                } else if (escolha == "^") {
+
+                    resultado = valor1 ** valor2
+
+                    console.log('Resultado: ' + valor1 + " ^ " + valor2 + " = " + resultado.toFixed(2).replace('.', ','))
+
+                } else if (escolha == "%") {
+
+                    resultado = (valor1 / 100) * valor2
+
+                    //To fixed - ajuda a epecificar a quantidade de decimais após a virgula
+
+                    console.log('Resultado: ' + valor1 + " % " + valor2 + " = " + resultado.toFixed(2).replace('.', ','))
+
+                } else {
+                    console.log('-------------------------------------------')
+                    console.log('ERRO: Informe a OPERAÇÃO de forma CORRETA')
+                    console.log('-------------------------------------------')
+                }
+            }
+            entradaDados.close();
+
         })
     })
 })
